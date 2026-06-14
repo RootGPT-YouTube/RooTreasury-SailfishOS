@@ -1,4 +1,14 @@
+# RooTreasury — file da non versionare
 *~
 *.pro.user
 *.pro.user.*
 translations/*.qm
+
+# Artefatti di build
+*.o
+moc_*
+Makefile
+RooTreasury
+RPMS/
+.sfdk/
+documentation.list
