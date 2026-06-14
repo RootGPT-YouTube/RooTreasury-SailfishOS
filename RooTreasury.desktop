@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Name=RooTreasury
+Icon=RooTreasury
+Exec=RooTreasury
+
+[X-Sailjail]
+Permissions=Documents;Downloads
+OrganizationName=com.github.RootGPT_YouTube
+ApplicationName=rootreasury
