@@ -27,6 +27,25 @@ Page {
         return Number(value).toFixed(2) + " " + appWindow.currency
     }
 
+    // Restituisce un colore distinto per ogni indice di categoria. Per i primi
+    // valori usa la palette fissa; oltre, genera tinte sempre nuove (passo ad
+    // angolo aureo su tonalità/saturazione/luminosità) così i colori del grafico
+    // a torta non si ripetono MAI, qualunque sia il numero di categorie.
+    function pieColorForIndex(index) {
+        var palette = appWindow.piePalette
+        if (index < palette.length) {
+            return palette[index]
+        }
+        var extra = index - palette.length
+        var hue = (extra * 0.6180339887 + 0.15) % 1.0
+        var sat = 0.55 + 0.25 * (extra % 2)
+        var val = 0.9 - 0.2 * (Math.floor(extra / 2) % 2)
+        // toString() -> "#rrggbb": una stringa coerente sia per il Canvas della
+        // torta sia per il Rectangle della legenda (un oggetto colore nel
+        // ListModel andrebbe perso e renderizzato bianco).
+        return Qt.hsva(hue, sat, val, 1.0).toString()
+    }
+
     function balanceColor() {
         if (monthlyBalance < 0) {
             return "#d32f2f"
@@ -112,7 +131,7 @@ Page {
 
             if (categoryTotals[expenseCategory] === undefined) {
                 categoryTotals[expenseCategory] = 0
-                categoryColors[expenseCategory] = appWindow.piePalette[paletteIndex % appWindow.piePalette.length]
+                categoryColors[expenseCategory] = page.pieColorForIndex(paletteIndex)
                 paletteIndex += 1
             }
             categoryTotals[expenseCategory] += Number(expense.amount)
@@ -167,7 +186,7 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("Impostazioni")
+                text: qsTr("Opzioni")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
         }

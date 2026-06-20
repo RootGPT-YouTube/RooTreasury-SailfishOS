@@ -93,7 +93,7 @@ Page {
 
         PageHeader {
             id: header
-            title: qsTr("Impostazioni")
+            title: qsTr("Opzioni")
         }
 
         Column {
@@ -121,6 +121,27 @@ Page {
                         verticalCenter: parent.verticalCenter
                     }
                     text: qsTr("Categorie")
+                    color: Theme.primaryColor
+                    font.pixelSize: Theme.fontSizeLarge
+                    truncationMode: TruncationMode.Fade
+                }
+            }
+
+            ListItem {
+                width: parent.width
+                contentHeight: currencyLabel.height + 2 * Theme.paddingMedium
+                onClicked: pageStack.push(Qt.resolvedUrl("CurrencyPage.qml"))
+
+                Label {
+                    id: currencyLabel
+                    anchors {
+                        left: parent.left
+                        leftMargin: Theme.paddingMedium
+                        right: parent.right
+                        rightMargin: Theme.paddingMedium
+                        verticalCenter: parent.verticalCenter
+                    }
+                    text: qsTr("Valuta")
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeLarge
                     truncationMode: TruncationMode.Fade

@@ -47,7 +47,7 @@ ApplicationWindow {
     }
 
     property string appName: "RooTreasury"
-    property string appVersion: "1.0"
+    property string appVersion: "1.5"
     property string appAuthor: "RootGPT"
     property string currency: "€"
     property var transactions: []
@@ -109,6 +109,33 @@ ApplicationWindow {
     ConfigurationValue {
         id: categoriesConfig
         key: "/apps/RooTreasury/categoriesJson"
+    }
+    ConfigurationValue {
+        id: currencyConfig
+        key: "/apps/RooTreasury/currency"
+    }
+
+    function loadCurrency() {
+        var raw = currencyConfig.value === undefined || currencyConfig.value === null
+                ? ""
+                : String(currencyConfig.value).trim()
+        if (raw !== "") {
+            currency = raw
+        }
+    }
+
+    function setCurrency(value) {
+        var normalized = value === undefined || value === null ? "" : String(value).trim()
+        if (normalized === "") {
+            return false
+        }
+        currency = normalized
+        try {
+            currencyConfig.value = normalized
+        } catch (error) {
+            console.log("Unable to save currency:", error)
+        }
+        return true
     }
 
     function normalizeCategoryName(name) {
@@ -640,6 +667,7 @@ ApplicationWindow {
     onCategoriesChanged: saveCategories()
 
     Component.onCompleted: {
+        loadCurrency()
         loadTransactions()
         loadCategories()
         transactionsLoaded = true
