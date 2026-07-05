@@ -413,6 +413,22 @@ Page {
 
             Label {
                 width: parent.width
+                horizontalAlignment: Text.AlignLeft
+                text: qsTr("Totale entrate") + ": " + page.formatAmount(page.totalIncome)
+                color: "#2e7d32"
+                font.bold: true
+            }
+
+            Label {
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
+                text: qsTr("Totale uscite") + ": " + page.formatAmount(page.totalExpense)
+                color: "#d32f2f"
+                font.bold: true
+            }
+
+            Label {
+                width: parent.width
                 text: qsTr("Nessun movimento nel mese selezionato")
                 horizontalAlignment: Text.AlignHCenter
                 color: Theme.secondaryColor

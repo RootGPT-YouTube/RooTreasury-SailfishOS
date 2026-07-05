@@ -293,6 +293,14 @@
         <source>Opzioni</source>
         <translation>Options</translation>
     </message>
+    <message>
+        <source>Totale entrate</source>
+        <translation>Total income</translation>
+    </message>
+    <message>
+        <source>Totale uscite</source>
+        <translation>Total expenses</translation>
+    </message>
 </context>
 <context>
     <name>IncomePage</name>
