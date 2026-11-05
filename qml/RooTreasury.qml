@@ -47,7 +47,7 @@ ApplicationWindow {
     }
 
     property string appName: "RooTreasury"
-    property string appVersion: "1.6"
+    property string appVersion: "1.7"
     property string appAuthor: "RootGPT"
     property string currency: "€"
     property var transactions: []
